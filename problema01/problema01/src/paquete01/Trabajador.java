@@ -1,4 +1,4 @@
-package problema01;
+package paquete01;
 
 /**
  *
@@ -10,9 +10,9 @@ public class Trabajador {
     private String nom;
     private String correo;
     private double sueldo;
-    private int mesS;
+    private String mesS;
     
-    public Trabajador (String c, String n, String corr, double s, int m){
+    public Trabajador (String c, String n, String corr, double s, String m){
         ced = c;
         nom = n;
         correo = corr;
@@ -36,7 +36,7 @@ public class Trabajador {
         sueldo = n;
     }
 
-    public void establecerMesS(int n) {
+    public void establecerMesS(String n) {
         mesS = n;
     }
 
@@ -56,7 +56,7 @@ public class Trabajador {
         return sueldo;
     }
 
-    public int obtenerMesS() {
+    public String obtenerMesS() {
         return mesS;
     }
 
@@ -66,7 +66,7 @@ public class Trabajador {
                 + "Cédula: %s\n"
                 + "Correo: %s\n"
                 + "Sueldo: %.2f\n"
-                + "Mes del sueldo: %d\n",
+                + "Mes del sueldo: %s\n",
                 obtenerNombre(),
                 obtenerCedula(),
                 obtenerCorreo(),

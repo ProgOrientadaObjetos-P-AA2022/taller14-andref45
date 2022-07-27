@@ -1,4 +1,4 @@
-package problema01;
+package paquete01;
 
 import java.util.Scanner;
 import java.sql.SQLException;
@@ -15,9 +15,9 @@ public class Ejecutor {
     public static void main(String[] args) throws SQLException {
         Enlace c = new Enlace();
         Scanner entrada = new Scanner(System.in);
-        String ced, nom, correo;
+        String ced, nom, correo, mes;
         double sueldo;
-        int mes;
+        
         boolean bandera = true;
         String cadena = "";
         do {
@@ -29,13 +29,13 @@ public class Ejecutor {
             correo = entrada.nextLine();
             System.out.println("Ingrese el sueldo:");
             sueldo = entrada.nextDouble();
+            entrada.nextLine();
             System.out.println("Ingrese el mes del sueldo:");
-            mes = entrada.nextInt();
+            mes = entrada.nextLine();
 
             Trabajador t = new Trabajador(ced, nom, correo, sueldo, mes);
             
             c.insertarTrabajador(t);
-            entrada.nextLine();
             System.out.println("Ingrese SI para salir del proceso");
             String op = entrada.nextLine();
             

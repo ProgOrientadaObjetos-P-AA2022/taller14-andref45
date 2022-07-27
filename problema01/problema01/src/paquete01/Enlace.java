@@ -1,4 +1,4 @@
-package problema01;
+package paquete01;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -19,11 +19,11 @@ public class Enlace {
 
         try {
             // db parameters  
-            String url = "jdbc:sqlite:bd/trabajadores.bd";
+            String url = "jdbc:sqlite:bd/base01.bd";
             // create a connection to the database  
             conn = DriverManager.getConnection(url);
-            System.out.println(conn.isClosed());
-            System.out.println("Connection to SQLite has been established.");  
+            //System.out.println(conn.isClosed());
+            //System.out.println("Connection to SQLite has been established.");  
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -42,13 +42,12 @@ public class Enlace {
             Statement statement = obtenerConexion().createStatement();
             String data = String.format("INSERT INTO Trabajador (ced, nom, "
                     + "correo, sueldo, mesS) "
-                    + "values ('%s', '%s', '%s', '%.2f', %d)",
+                    + "values ('%s', '%s', '%s', '%.2f', %s)",
                     trabajador.obtenerCedula(),
                     trabajador.obtenerNombre(),
                     trabajador.obtenerCorreo(),
                     trabajador.obtenerSueldo(),
                     trabajador.obtenerMesS());
-            System.out.println(data);
             statement.executeUpdate(data);
             obtenerConexion().close();
         } catch (SQLException e) {
@@ -63,14 +62,16 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = "Select * from trabajador;";
+            String data = "Select * from trabajadores;";
 
             ResultSet rs = statement.executeQuery(data);
             while (rs.next()) {
-                Trabajador tra = new Trabajador(rs.getString("ced"),
-                        rs.getString("nom"), rs.getString("correo"),
+                Trabajador tra = new Trabajador(
+                        rs.getString("ced"),
+                        rs.getString("nom"),
+                        rs.getString("correo"),
                         rs.getDouble("sueldo"),
-                        rs.getInt("mesS"));
+                        rs.getString("mesS"));
                 lista.add(tra);
             }
 
